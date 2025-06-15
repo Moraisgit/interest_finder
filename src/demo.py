@@ -33,14 +33,15 @@ cathy = autogen.ConversableAgent(
     1. Answer to the butler's questions in a clear way!
     2. Follow the butler to an empty seat while answering other questions from the butler.""" + termination_notice,
     llm_config=llm_config,
-    human_input_mode="NEVER",  # Never ask for human input.
+    human_input_mode="ALWAYS",  # Never ask for human input.
     is_termination_msg=lambda msg: "terminate" in msg["content"].lower()
 )
 
 bob = autogen.ConversableAgent(
     name="Bob",
-    system_message="""Your name is Bob and you are a butler at a party. 
-    Your job is to greet guests at the entrance of a party, get to kown them and take them to a free sit.
+    system_message="""You are Bob, a robot designed to execute general tasks based on instructions from humans. 
+    Your task is to be a butler at a party. 
+    Your job is to greet guests at the entrance of a party, chat with them and take them to a free sit.
 
     YOU MUST FOLLOW THESE STEPS WHEN GREETING GUESTS: 
     1. When greeting guests at the entrance you have to find out they're name and favourite drink. 
